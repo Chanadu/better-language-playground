@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script src="wasm_exec.js"></script>
+	<script>
+		console.log("started");
+
+		const go = new Go();
+		go.argv = ["better-language", 
+			`
+var startTime = clock()
+
+function fib(n) {
+  if (n <= 1) return n
+  return fib(n - 2) + fib(n - 1)
+}
+
+for (var i = 0; i < 15; i = i + 1) {
+    print fib(i)
+}
+
+var endTime = clock()
+
+print "Time taken: " + (endTime - startTime) + "ms"
+			`];
+
+
+		WebAssembly.instantiateStreaming(
+			fetch("main.wasm"),
+			go.importObject,
+		).then((result) => {
+			console.log("Got wasm");
+
+			go.run(result.instance);
+		});
+	</script>
+	<title>Document</title>
+
+<body>
+	<p>Tesitng</p>
+</body>
+
+</html>
