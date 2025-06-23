@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="./wasm_exec.js"></script>
+    <title>BPL Playground</title>
+    <link rel="stylesheet" href="./output.css" />
+    <!-- <style> -->
+    <!--   body { -->
+    <!--     font-family: Arial, sans-serif; -->
+    <!--     margin: 0; -->
+    <!--     padding: 20px; -->
+    <!--   } -->
+    <!--   /* #bplOutput { */ -->
+    <!--   /*   white-space: pre-wrap; */ -->
+    <!--   /* } */ -->
+    <!-- </style> -->
+  </head>
+
+  <body
+    class="bg-gray-800 text-white flex flex-row items-center justify-center max-w-screen max-h-screen p-4 gap-4"
+  >
+    <div
+      class="flex flex-col basis-5/6 flex-grow p-12 items-center max-h-screen"
+    >
+      <label
+        for="bplInput"
+        class="mb-2 flex-none text-sm font-medium text-white"
+        >Write Code Here:</label
+      >
+      <textarea
+        id="bplInput"
+        class="p-4 flex-auto h-screen w-full text-sm rounded-lg border bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+        placeholder="Write your thoughts here..."
+      ></textarea>
+
+      <button id="runButton flex-none">Run BPL Code</button>
+    </div>
+
+    <div id="bplOutput" class="flex-grow whitespace-pre-wrap border">_</div>
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>
