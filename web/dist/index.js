@@ -8,12 +8,16 @@ window.goPrint = function (msg, isError) {
     else {
         console.log('Go Print: ' + msg);
     }
+    const newChild = document.createElement('span');
+    newChild.textContent = msg;
     if (isError) {
-        output.textContent += '<span style="color: red;">' + msg + '</span>';
+        // output.textContent += '<span style="color: red;">' + msg + '</span>';
+        newChild.style = 'color: red;';
     }
     else {
-        output.textContent += msg;
+        // output.textContent += msg;
     }
+    output.appendChild(newChild);
     // output.textContent += '<span style="color: red;">' + msg + '</span>';
     // output.textContent += '<span style="color: red;">' + msg + '</span>';
 };
@@ -29,6 +33,7 @@ button.addEventListener('click', () => {
     console.log('Run button clicked');
     output.textContent = ''; // Clear previous output
     const code = input.value.trim();
+    // document.body.document.createElement('div');
     runGo(code);
 });
 export {};
