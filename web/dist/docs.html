@@ -10,10 +10,63 @@
 	<title>BPL Docs</title>
 	<link rel="stylesheet" href="./output.css" />
 	<!-- <link rel="stylesheet" href="./main.css" /> -->
+	<style>
+		h1 {
+			font-size: 1.875rem /* 30px */;
+			line-height: 2.25rem /* 36px */;
+			font-weight: 700;
+			display: block;
+			margin-bottom: 1rem /* 16px */;
+			margin-top: 0;
+		}
+
+		h2 {
+			font-size: 1.5rem /* 24px */;
+			line-height: 2rem /* 32px */;
+			font-weight: 600;
+			display: block;
+			margin-bottom: 0.5rem /* 8px */;
+			margin-top: 0;
+		}
+		h3 {
+			font-size: 1.25rem /* 20px */;
+			line-height: 1.75rem /* 28px */;
+			font-weight: 600;
+			display: block;
+			margin-bottom: 0.5rem /* 8px */;
+			margin-top: 0;
+		}
+
+		p {
+			margin-bottom: .75rem /* 16px */;
+		}
+
+		code {
+			display: block;
+			margin: .5rem;
+			/* margin-top: 0rem; */
+			padding-left: 4rem;
+			/* padding-top: 0; */
+		}
+		pre {
+			margin: 0;
+			padding: 0;
+			white-space: pre;
+		}
+		
+		.inline-code {
+			display: inline;
+			margin: 0;
+			padding: 0;
+			/* font-family: monospace; */
+			/* italic: true; */
+			
+		}
+	</style>
 </head>
 
 <body
-	class="bg-gray-800 text-white flex flex-col items-start justify-start h-full w-full max-w-screen max-h-screen gap-4 p-32">
+	class="bg-gray-800 text-white flex flex-col items-start justify-start h-full w-full max-w-screen gap-4 p-32">
 
 	<nav class="absolute top-0 left-0 w-full h-3/12 bg-gray-900 p-4 flex flex-col items-start ">
 		<ul class="w-full flex flex-row gap-4 justify-evenly">
@@ -27,23 +80,110 @@
 			<li></li>
 		</ul>
 	</nav>
-	<h1>
+	<h1 >
 		BPL (Better Programming Language) Documentation
 	</h1>
-	<ul>
-		<li>
-			Option 1
-		</li>
-		<li>
-			Option 1
-		</li>
-		<li>
-			Option 1
-		</li>
-		<li>
-			Option 1
-		</li>
-	</ul>
-</body>
+	<h2 >
+		Description
+	</h2>
+	<p >
+		BPL is a simple programming language designed to be easy to learn and use. It is a language with a focus on simplicity and readability, created from stratch with a tree-walking interpreter in Golang.
+	</p>
+	<h2 >
+		How to Run
+	</h2>
+	<h3>
+		Using the Playground
+	</h3>
+	<p >
+		To run BPL code, you can use the provided playground. Write your code in the input area and click the "Run BPL Code" button to see the output.
+	</p>
+	<h3>
+		Build from Source
+	</h3>
 
+	<p>
+		To build BPL from source, clone the repository (at https://github.com/Chanadu/better-language) and run the following commands inside the project directory:
+		<code>
+			go build -o gbpl .
+
+			./gbpl <filename>.bpl
+		</code>
+		Optionally, you can also run in a limited REPL environment by running:
+		<code>
+			./gbpl
+		</code>
+	</p>
+
+	<h2>Why Another Programming Language?</h2>
+	<p> It was a vibe to make. </p>
+
+	<h2>Syntax</h2>
+	<p>
+		BPL syntax is designed to be simple and easy to read (subjectively). Here are some examples of the syntax:
+	</p>
+	
+	<h3>Variables</h3>
+	<p>
+		Variables are declared using the <code class="inline-code">var</code> keyword:
+		<code>
+			var x = 10
+		</code>
+		Variables can be reassigned:
+		<code>
+			x = 20
+		</code>
+	</p>
+	<h3>Functions</h3>
+		<p style="margin-bottom: 0;">
+			Functions are defined using the <code class="inline-code">function</code> keyword:
+			<code>
+				function add(a, b, c) {...}
+			</code>
+			Call functions using their name and passing arguments:
+			<code>
+				add(1, 2, 3)
+			</code>
+			Functions can return values:
+			<code>
+				return a + b + c
+			</code>
+			Functions can call themselves recursively:
+		</p>
+<pre style="margin-bottom: .75rem;"><code>
+function factorial(n) {
+	if n == 0 {
+		return 1
+	}
+	return n * factorial(n - 1)
+}</code></pre>
+	<h3>Control Flow</h3>
+	<p>
+		<code class="inline-code">if</code> and <code class="inline-code">else</code> statements:
+		<code>
+			if x > 10 {
+			print("x is greater than 10")
+			} else {
+			print("x is less than or equal to 10")
+			}
+		</code>
+		<code class="inline-code">for</code> loops:
+		<code>
+			for (var i = 0; i < 10; i++) {
+				print(i)
+			}
+		</code>
+		<code class="inline-code">while</code> loops:
+		<code>
+			while (x < 10) {
+				print(x);
+				x = x + 1
+			}
+		</code>
+	</p>
+	<h2>Built-in Functions</h2>
+	<p>
+		BPL provides several built-in functions for common tasks, such as <code class="inline-code">print()</code>, <code class="inline-code">input()</code>, and <code class="inline-code">len()</code>.
+	</p>
+</body>
 </html>

@@ -6,10 +6,6 @@
   "bracketSpacing": true,
   "semi": true,
   "singleQuote": true,
-  "svelteAllowShorthand": false,
-  "singleAttributePerLine": true,
-  "svelteBracketNewLine": true,
-  "svelteStrictMode": true,
   "svelteIndentScriptAndStyle": true,
   "arrowParens": "always",
   "cursorOffset": -1,
@@ -23,5 +19,4 @@
   "proseWrap": "preserve",
   "svelteSortOrder": "scripts-options-markup-styles",
   "overrides": [],
-  "plugins": ["prettier-plugin-tailwindcss"]
 }
