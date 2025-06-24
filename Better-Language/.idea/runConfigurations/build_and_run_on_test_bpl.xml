@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="build and run on test.bpl" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="Better-Language" />
+    <working_directory value="$PROJECT_DIR$" />
+    <go_parameters value="-o build/betterlanguage" />
+    <parameters value="test.bpl" />
+    <kind value="PACKAGE" />
+    <package value="github.com/Chanadu/better-language" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$" />
+    <output_directory value="$PROJECT_DIR$/build" />
+    <pty_enabled value="true" />
+    <method v="2" />
+  </configuration>
+</component>

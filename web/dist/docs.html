@@ -150,41 +150,151 @@
 			</code>
 			Functions can call themselves recursively:
 		</p>
-<pre style="margin-bottom: .75rem;"><code>
-function factorial(n) {
+<pre style="margin-bottom: .75rem;"><code>function factorial(n) {
 	if n == 0 {
 		return 1
-	}
-	return n * factorial(n - 1)
+	} return n * factorial(n - 1)
 }</code></pre>
+
 	<h3>Control Flow</h3>
 	<p>
 		<code class="inline-code">if</code> and <code class="inline-code">else</code> statements:
 		<code>
-			if x > 10 {
-			print("x is greater than 10")
+			if (x > 10) {
+			print "x is greater than 10"
 			} else {
-			print("x is less than or equal to 10")
+			print "x is less than or equal to 10"
 			}
 		</code>
 		<code class="inline-code">for</code> loops:
 		<code>
 			for (var i = 0; i < 10; i++) {
-				print(i)
+				print i
 			}
 		</code>
 		<code class="inline-code">while</code> loops:
 		<code>
 			while (x < 10) {
-				print(x);
+				print x
 				x = x + 1
 			}
 		</code>
+		Ternary operator(<code class="inline-code">?</code>)for conditional expressions:
+		<code>
+			print x > 10 ? "x is greater than 10" : "x is less than or equal to 10"
+		</code>
+		Scope is determined by <code class="inline-code">{}</code> blocks, so variables declared inside a block are not accessible outside of it.
+		<code>
+				var x = 5; { var x = 10; print(x); } print(x)
+		</code>
 	</p>
-	<h2>Built-in Functions</h2>
+	<h3>Arithmetic Operations</h3>
 	<p>
-		BPL provides several built-in functions for common tasks, such as <code class="inline-code">print()</code>, <code class="inline-code">input()</code>, and <code class="inline-code">len()</code>.
+		Addition(<code class="inline-code">+</code>), subtraction (<code class="inline-code">-</code>), multiplication (<code class="inline-code">*</code>), and division (<code class="inline-code">/</code>) are supported:
+		<code>
+			var a = 10 <br>
+			var b = 5 <br>
+			var c = a + b // c is 15 <br>
+			var d = a - b // d is 5 <br>
+			var e = a * b // e is 50 <br>
+			var f = a / b // f is 2 <br>
+		</code>
+	</p>
+	<h3>Logical Operations</h3>
+	<p>
+		Logical operations such as <code class="inline-code">&&</code> (and), <code class="inline-code">||</code> (or), and <code class="inline-code">!</code> (not) are supported:
+		<code>
+			var a = true <br>
+			var b = false <br>
+			var c = a && b // c is false <br>
+			var d = a || b // d is true <br>
+			var e = !a // e is false <br>
+		</code>
+	</p>
+	<h3>Comparison Operations</h3>
+		<p>
+		Comparison operations such as <code class="inline-code">==</code> (equal), <code class="inline-code">!=</code> (not equal), <code class="inline-code"><</code> (less than), <code class="inline-code">></code> (greater than), <code class="inline-code"><=</code> (less than or equal to), and <code class="inline-code">>=</code> (greater than or equal to) are supported:
+		<code>
+			var a = 10 <br>
+			var b = 5 <br>
+			var c = a == b // c is false <br>
+			var d = a != b // d is true <br>
+			var e = a &lt; b // e is false <br>
+			var f = a &gt; b // f is true <br>
+			var g = a &lt;= b // g is false <br>
+			var h = a &gt;= b // h is true <br>
+		</code>
+		</p>
+	<h3>Bitwise Operations</h3>
+		<p>
+		Bitwise operations such as <code class="inline-code">&</code> (and), <code class="inline-code">|</code> (or), <code class="inline-code">^</code> (xor), <code class="inline-code">~</code> (not), and bit shifts (<code class="inline-code"><<</code> and <code class="inline-code">>></code>) are supported:
+		<code>
+			var a = 10 // 1010 in binary <br>
+			var b = 5 // 0101 in binary <br>
+			var c = a & b // c is 2 (0010 in binary) <br>
+			var d = a | b // d is 15 (1111 in binary) <br>
+			var e = a ^ b // e is 13 (1101 in binary) <br>
+			var f = ~a // f is -11 (inverts bits) <br>
+			var g = a << 1 // g is 20 (10100 in binary) <br>
+			var h = a >> 1 // h is 5 (0101 in binary) <br>
+		</code>
+		</p>
+	<h3>Datatypes</h3>
+	 <p>
+		Available Datatypes include Integers, Floats, Booleans and Strings
+		<code>
+			var i = 10<br>
+			var f = 3.14<br>
+			var b = true<br>
+			var s = "Hello, BPL!"<br>
+		</code>
+	</p>
+	<h3>Comments</h3>
+	<p>
+		Comments can be added using <code class="inline-code">//</code> for single-line comments 
+		<code>
+			// This is a single-line comment<br>
+			var x = 10 // This is an inline comment<br>
+		</code>
+	</p>
+	<h3>Built-in Functions</h3>
+	<p>
+		The <code class="inline-code">print</code> function is available to output values to the console:
+		<code>
+			print("Hello, BPL!")
+		</code>
+		The print function can also be used without parentheses for simple output:
+		<code>
+			print "Hello, BPL!"
+		</code>
+		The <code class="inline-code">clock</code> function is available to get the current time in milliseconds since the epoch:
+		<code>
+			print clock()
+		</code>
+	</p>
+	<h2>Example Code</h2>
+	<p>
+		Here is a simple example of a BPL program that calculates the fibonacci sequence and prints the first 10 numbers and times the operations:
+	</p>
+	<pre><code>var startTime = clock()
+
+function fib(n) {
+  if (n <= 1) return n
+  return fib(n - 2) + fib(n - 1)
+}
+
+for (var i = 0; i < 10; i = i + 1) {
+    print fib(i)
+}
+
+var endTime = clock()
+
+print "Time taken: " + (endTime - startTime) + "ms"</code></pre>
+	<h2>Features</h2>
+	<p>
+		Scanner: &#10004;<br>
+		Parser: &#10004;<br>
+		Interpreter: &#10004;<br>
 	</p>
 </body>
 </html>
-
