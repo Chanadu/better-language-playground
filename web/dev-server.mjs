@@ -1,12 +1,15 @@
 import { spawn } from 'node:child_process';
-import { existsSync, statSync, watch } from 'node:fs';
+import { statSync, watch } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { copyStaticAssets } from './scripts/copy-static.mjs';
 
 const webRoot = path.dirname(fileURLToPath(import.meta.url));
 const distRoot = path.join(webRoot, 'dist');
+const sourceRoot = path.join(webRoot, 'src');
+const publicRoot = path.join(webRoot, 'public');
 const languageRoot = path.resolve(webRoot, '../Better-Language');
 const host = process.env.HOST || '127.0.0.1';
 const port = Number(process.env.PORT || 3000);
@@ -56,13 +59,34 @@ function startAssetWatchers() {
 		[
 			'./node_modules/tailwindcss/lib/cli.js',
 			'-i',
-			'./main.css',
+			'./src/styles.css',
 			'-o',
 			'./dist/output.css',
 			'--watch',
 		],
 		{ persistent: true },
 	);
+}
+
+let staticCopyTimer;
+
+function scheduleStaticCopy() {
+	clearTimeout(staticCopyTimer);
+	staticCopyTimer = setTimeout(async () => {
+		try {
+			await copyStaticAssets();
+			console.log('[dev] Static assets updated.');
+		} catch (error) {
+			console.error('[dev] Failed to update static assets.', error);
+		}
+	}, 75);
+}
+
+function watchStaticAssets() {
+	watch(sourceRoot, { recursive: true }, (_event, filename) => {
+		if (filename?.endsWith('.html')) scheduleStaticCopy();
+	});
+	watch(publicRoot, { recursive: true }, scheduleStaticCopy);
 }
 
 let goBuildTimer;
@@ -176,14 +200,11 @@ const server = createServer(async (request, response) => {
 	}
 });
 
-if (!existsSync(distRoot)) {
-	console.error('[dev] Missing web/dist directory.');
-	process.exit(1);
-}
-
+await copyStaticAssets();
 startAssetWatchers();
 buildWasm();
 watchGoSources();
+watchStaticAssets();
 watch(distRoot, { recursive: true }, scheduleReload);
 
 server.listen(port, host, () => {

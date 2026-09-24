@@ -5,11 +5,12 @@
   "license": "ISC",
   "author": "",
   "type": "commonjs",
-  "main": "index.js",
   "scripts": {
-    "build": "npm run build:js && npm run build:css && npm run build:wasm",
+    "clean": "node ./scripts/clean.mjs",
+    "build": "npm run clean && npm run build:static && npm run build:js && npm run build:css && npm run build:wasm",
+    "build:static": "node ./scripts/copy-static.mjs",
     "build:js": "node ./node_modules/typescript/bin/tsc",
-    "build:css": "node ./node_modules/tailwindcss/lib/cli.js -i ./main.css -o ./dist/output.css",
+    "build:css": "node ./node_modules/tailwindcss/lib/cli.js -i ./src/styles.css -o ./dist/output.css",
     "build:wasm": "cd ../Better-Language && GOOS=js GOARCH=wasm go build -o ../web/dist/main.wasm .",
     "dev": "node ./dev-server.mjs",
     "test": "npm run build"

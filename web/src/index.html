@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Write and run Better Programming Language code in your browser." />
+		<script src="./wasm_exec.js"></script>
+		<title>BPL — Better Language Playground</title>
+		<link rel="stylesheet" href="./output.css" />
+		<script type="module" src="./theme.js"></script>
+		<script type="module" src="./index.js"></script>
+	</head>
+	<body>
+		<div class="site-shell">
+			<header class="site-header">
+				<a class="brand" href="index.html" aria-label="BPL playground home">
+					<span class="brand-mark" aria-hidden="true">B/</span>
+					<span class="brand-copy"><strong>Better</strong><span>Language</span></span>
+				</a>
+				<nav class="main-nav" aria-label="Primary navigation">
+					<a class="nav-link active" href="index.html">Playground</a>
+					<a class="nav-link" href="docs.html">Documentation</a>
+					<button class="theme-toggle" id="themeToggle" data-testid="theme-toggle" type="button" aria-label="Switch color mode">
+						<svg class="sun-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.25"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.34 4.34l1.42 1.42M14.24 14.24l1.42 1.42M15.66 4.34l-1.42 1.42M5.76 14.24l-1.42 1.42"/></svg>
+						<svg class="moon-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M16.5 12.5A7 7 0 0 1 7.5 3.5a7 7 0 1 0 9 9Z"/></svg>
+						<span class="theme-label">Dark</span>
+					</button>
+					<a class="github-link" href="https://github.com/Chanadu/better-language" target="_blank" rel="noreferrer">
+						<span>GitHub</span>
+						<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5.5 14.5 14.5 5.5M7 5.5h7.5V13"/></svg>
+					</a>
+				</nav>
+			</header>
+
+			<main class="playground-main">
+				<div class="workspace-heading">
+					<div>
+						<h1>BPL Playground</h1>
+						<p>Write and run Better Language code in your browser.</p>
+					</div>
+				</div>
+
+				<section class="workbench" aria-label="Code playground">
+					<div class="panel editor-panel">
+						<div class="panel-header">
+							<div class="panel-title"><span class="file-dot"></span><strong>main.bpl</strong><span class="file-state">Editor</span></div>
+							<div class="editor-tools">
+								<label class="example-label" for="exampleSelect">Example</label>
+								<select id="exampleSelect" aria-label="Choose a code example">
+									<option value="hello">Hello, world</option>
+									<option value="fibonacci">Fibonacci</option>
+									<option value="factorial">Factorial</option>
+								</select>
+							</div>
+						</div>
+						<div class="editor-wrap">
+							<div class="line-numbers" id="lineNumbers" aria-hidden="true">1</div>
+							<label class="sr-only" for="bplInput">BPL code editor</label>
+							<textarea id="bplInput" spellcheck="false" aria-label="BPL code editor"></textarea>
+						</div>
+						<div class="panel-footer">
+							<span id="editorStats">1 line · BPL</span>
+						</div>
+					</div>
+
+					<div class="panel output-panel">
+						<div class="panel-header">
+							<div class="panel-title"><span class="terminal-icon">›_</span><strong>Output</strong></div>
+							<button class="icon-button" id="clearButton" type="button" aria-label="Clear output">Clear</button>
+						</div>
+						<div class="output-wrap">
+							<div class="output-placeholder" id="outputPlaceholder">
+								<strong>No output yet</strong>
+								<p>Run the program to view its output.</p>
+							</div>
+							<div id="bplOutput" role="log" aria-live="polite"></div>
+						</div>
+						<div class="panel-footer output-footer"><span id="runStatus"><i></i> Runtime ready</span><span>WebAssembly · Local</span></div>
+					</div>
+				</section>
+
+				<div class="action-row">
+					<p><strong>Shortcut:</strong> <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to run</p>
+					<button id="runButton" class="run-button" type="button">
+						<span>Run program</span>
+						<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 8 6-8 6V4Z"/></svg>
+					</button>
+				</div>
+			</main>
+
+		</div>
+	</body>
+</html>

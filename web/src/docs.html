@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Documentation for Better Programming Language." />
+	<title>BPL — Documentation</title>
+	<link rel="stylesheet" href="./output.css" />
+	<script type="module" src="./theme.js"></script>
+</head>
+<body>
+	<div class="site-shell">
+		<header class="site-header">
+			<a class="brand" href="index.html" aria-label="BPL playground home">
+				<span class="brand-mark" aria-hidden="true">B/</span>
+				<span class="brand-copy"><strong>Better</strong><span>Language</span></span>
+			</a>
+			<nav class="main-nav" aria-label="Primary navigation">
+				<a class="nav-link" href="index.html">Playground</a>
+				<a class="nav-link active" href="docs.html">Documentation</a>
+				<button class="theme-toggle" id="themeToggle" data-testid="theme-toggle" type="button" aria-label="Switch color mode">
+					<svg class="sun-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.25"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.34 4.34l1.42 1.42M14.24 14.24l1.42 1.42M15.66 4.34l-1.42 1.42M5.76 14.24l-1.42 1.42"/></svg>
+					<svg class="moon-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M16.5 12.5A7 7 0 0 1 7.5 3.5a7 7 0 1 0 9 9Z"/></svg>
+					<span class="theme-label">Dark</span>
+				</button>
+				<a class="github-link" href="https://github.com/Chanadu/better-language" target="_blank" rel="noreferrer">
+					<span>GitHub</span>
+					<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5.5 14.5 14.5 5.5M7 5.5h7.5V13"/></svg>
+				</a>
+			</nav>
+		</header>
+
+		<main class="docs-main">
+			<aside class="docs-aside">
+				<p class="eyebrow"><span></span> On this page</p>
+				<nav class="docs-toc" aria-label="Documentation sections">
+					<a href="#getting-started">Getting started</a>
+					<a href="#variables">Variables</a>
+					<a href="#functions">Functions</a>
+					<a href="#control-flow">Control flow</a>
+					<a href="#operators">Operators</a>
+					<a href="#data-types">Data types</a>
+					<a href="#built-ins">Built-ins</a>
+					<a href="#example">Full example</a>
+				</nav>
+			</aside>
+
+			<article class="docs-content">
+				<header class="docs-hero">
+					<h1>Documentation</h1>
+					<p>Language syntax, built-ins, and examples for Better Programming Language.</p>
+				</header>
+
+				<section class="doc-section" id="getting-started">
+					<h2>Getting started</h2>
+					<p>Write code in the playground and select <strong>Run program</strong> to execute it. You can also press <code>Ctrl + Enter</code> from the editor.</p>
+					<h3>Build from source</h3>
+					<p>Clone the Better Language repository, then build the interpreter from its project directory:</p>
+					<pre><code>go build -o gbpl .
+./gbpl &lt;filename&gt;.bpl
+
+# Start the limited REPL
+./gbpl</code></pre>
+				</section>
+
+				<section class="doc-section" id="variables">
+					<h2>Variables</h2>
+					<p>Declare variables with the <code>var</code> keyword. Existing variables can be reassigned without repeating the keyword.</p>
+					<pre><code>var x = 10
+x = 20
+print x</code></pre>
+				</section>
+
+				<section class="doc-section" id="functions">
+					<h2>Functions</h2>
+					<p>Define functions with <code>function</code>, pass arguments by position, and return a value with <code>return</code>. Recursion is supported.</p>
+					<pre><code>function add(a, b, c) {
+  return a + b + c
+}
+
+print add(1, 2, 3)
+
+function factorial(n) {
+  if (n == 0) {
+    return 1
+  }
+  return n * factorial(n - 1)
+}</code></pre>
+				</section>
+
+				<section class="doc-section" id="control-flow">
+					<h2>Control flow</h2>
+					<h3>Conditionals</h3>
+					<pre><code>if (x > 10) {
+  print "x is greater than 10"
+} else {
+  print "x is less than or equal to 10"
+}</code></pre>
+					<h3>Loops</h3>
+					<pre><code>for (var i = 0; i < 10; i = i + 1) {
+  print i
+}
+
+while (x < 10) {
+  print x
+  x = x + 1
+}</code></pre>
+					<h3>Expressions and scope</h3>
+					<p>Use the ternary operator for compact conditions. Curly-brace blocks create scope, so declarations inside a block are not available outside it.</p>
+					<pre><code>print x > 10 ? "greater" : "not greater"
+
+var x = 5
+{
+  var x = 10
+  print x
+}
+print x</code></pre>
+				</section>
+
+				<section class="doc-section" id="operators">
+					<h2>Operators</h2>
+					<h3>Arithmetic</h3>
+					<p>BPL supports addition <code>+</code>, subtraction <code>-</code>, multiplication <code>*</code>, and division <code>/</code>.</p>
+					<pre><code>var a = 10
+var b = 5
+var sum = a + b
+var product = a * b</code></pre>
+					<h3>Logical and comparison</h3>
+					<p>Combine values with <code>&&</code>, <code>||</code>, and <code>!</code>. Compare them with <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, and <code>&gt;=</code>.</p>
+					<pre><code>var canContinue = isReady && !hasError
+var isEqual = a == b
+var isLarger = a > b</code></pre>
+					<h3>Bitwise</h3>
+					<p>Bitwise operations include <code>&amp;</code>, <code>|</code>, <code>^</code>, <code>~</code>, <code>&lt;&lt;</code>, and <code>&gt;&gt;</code>.</p>
+				</section>
+
+				<section class="doc-section" id="data-types">
+					<h2>Data types</h2>
+					<p>The language includes integers, floating-point numbers, booleans, and strings. Add comments with <code>//</code>.</p>
+					<pre><code>var integer = 10
+var decimal = 3.14
+var boolean = true
+var message = "Hello, BPL!"
+
+// This is a comment
+var x = 10 // This is an inline comment</code></pre>
+				</section>
+
+				<section class="doc-section" id="built-ins">
+					<h2>Built-in functions</h2>
+					<p>Use <code>print</code> with or without parentheses to send values to the output. <code>clock()</code> returns the current time in milliseconds since the epoch.</p>
+					<pre><code>print("Hello, BPL!")
+print "Hello again"
+print clock()</code></pre>
+				</section>
+
+				<section class="doc-section" id="example">
+					<h2>Full example</h2>
+					<p>This program calculates the first ten Fibonacci numbers and reports the execution time.</p>
+					<pre><code>var startTime = clock()
+
+function fib(n) {
+  if (n <= 1) return n
+  return fib(n - 2) + fib(n - 1)
+}
+
+for (var i = 0; i < 10; i = i + 1) {
+  print fib(i)
+}
+
+var endTime = clock()
+print "Time taken: " + (endTime - startTime) + "ms"</code></pre>
+				</section>
+
+				<section class="doc-section">
+					<h2>Under the hood</h2>
+					<div class="feature-grid">
+						<div class="feature-card">Scanner <span>✓</span></div>
+						<div class="feature-card">Parser <span>✓</span></div>
+						<div class="feature-card">Interpreter <span>✓</span></div>
+					</div>
+				</section>
+			</article>
+		</main>
+
+	</div>
+</body>
+</html>
