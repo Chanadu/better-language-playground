@@ -111,9 +111,18 @@ See the in-app documentation for variables, functions, control flow, operators, 
 
 ## Deployment
 
-The production output is a static site and can be hosted on GitHub Pages, Netlify, Vercel, Cloudflare Pages, or any static web server.
+The production output is a static site and can be hosted on Cloudflare Pages, Netlify, Vercel, or any static web server:
 
-Configure the host to:
+For Cloudflare Pages, use:
+
+| Setting | Value |
+| --- | --- |
+| Framework preset | None |
+| Root directory | Repository root |
+| Build command | `cd web && npm ci && npm run build` |
+| Build output directory | `web/dist` |
+
+Set `GO_VERSION` to `1.23` in the Pages build environment. Setting `NODE_VERSION` to `22` is also recommended for consistent builds.
 
 1. Run `cd web && npm ci && npm run build`.
 2. Publish the `web/dist` directory.
